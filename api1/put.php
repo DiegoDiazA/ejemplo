@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Actualizar Registro</title>
+    <title>Actualizar Entrada de Diario</title>
 </head>
 <body>
-    <h1>Actualizar Registro</h1>
+    <h1>Actualizar Entrada de Diario</h1>
     
     <form id="updateForm">
-        <label for="id_mae">ID del Registro a Actualizar:</label>
+        <label for="id_mae">ID de Usuario:</label>
         <input type="text" id="id_mae" name="id_mae" required><br>
 
-        <label for="apodo">Nuevo Apodo:</label>
+        <label for="nombre">Nombre</label>
+        <input type="text" id="nombre" name="nombre" required><br>
+
+        <label for="apodo">Apodo</label>
         <input type="text" id="apodo" name="apodo"><br>
 
-        <label for="foto">Nueva URL de Foto:</label>
-        <input type="text" id="foto" name="foto"><br>
-
-        <label for="tel">Nuevo Número:</label>
+        <label for="tel">tel:</label>
         <input type="text" id="tel" name="tel"><br>
+
+        <label for="foto">foto:</label>
+        <input type="text" id="foto" name="foto"><br>
 
         <button type="button" id="putButton">Actualizar con PUT</button>
         <button type="button" id="patchButton">Actualizar con PATCH</button>
@@ -27,24 +30,26 @@
 
     <script>
         document.getElementById('putButton').addEventListener('click', function () {
-            actualizarRegistro('PUT');
+            actualizarEntrada('PUT');
         });
 
         document.getElementById('patchButton').addEventListener('click', function () {
-            actualizarRegistro('PATCH');
+            actualizarEntrada('PATCH');
         });
 
-        function actualizarRegistro(metodo) {
+        function actualizarEntrada(metodo) {
             var id_mae = document.getElementById('id_mae').value;
+            var nombre = document.getElementById('nombre').value;
             var apodo = document.getElementById('apodo').value;
-            var foto = document.getElementById('foto').value;
             var tel = document.getElementById('tel').value;
+            var foto = document.getElementById('foto').value;
 
             var data = new URLSearchParams();
             data.append('id_mae', id_mae);
+            data.append('nombre', nombre);
             data.append('apodo', apodo);
-            data.append('foto', foto);
             data.append('tel', tel);
+            data.append('foto', foto);
 
             fetch('method.php', {
                 method: metodo,

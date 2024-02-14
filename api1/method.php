@@ -1,150 +1,140 @@
 <?php
 require "config/Conexion.php";
-
-  //print_r($_SERVER['REQUEST_METHOD']);
-  switch($_SERVER['REQUEST_METHOD']) {
+parse_str(file_get_contents("php://input"), $datos);
+//print_r($_SERVER['REQUEST_METHOD']);
+switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET':
-      // Consulta SQL para seleccionar datos de la tabla
-$sql = "SELECT nombre, apodo, tel, foto FROM maestro";
+        // Consulta SQL para seleccionar datos de la tabla de maestro
+        $sql = "SELECT id_mae, nombre, apodo, tel, foto FROM maestro";
 
-$query = $conexion->query($sql);
+        $query = $conexion->query($sql);
 
-if ($query->num_rows > 0) {
-    $data = array();
-    while ($row = $query->fetch_assoc()) {
-        $data[] = $row;
-    }
-    // Devolver los resultados en formato JSON
-    header('Content-Type: application/json');
-    echo json_encode($data);
-} else {
-    echo "No se encontraron registros en la tabla.";
-}
+        if ($query->num_rows > 0) {
+            $data = array();
+            while ($row = $query->fetch_assoc()) {
+                $data[] = $row;
+            }
+            // Devolver los resultados en formato JSON
+            header('Content-Type: application/json');
+            echo json_encode($data);
+        } else {
+            echo "No se encontraron registros en la tabla de maestro.";
+        }
 
-$conexion->close();
-      break;
-
+        $conexion->close();
+        break;
 
     case 'POST':
-      if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        // Recibir los datos del formulario HTML
-        $nombre = $_POST['nombre'];
-        $apodo = $_POST['apodo'];
-        $tel = $_POST['tel'];
-        $foto = $_POST['foto'];
-     
-    
-        // Insertar los datos en la tabla
-        $sql = "INSERT INTO maestro (nombre, apodo, tel, foto ) VALUES ('$nombre', '$apodo','$tel', '$foto')"; // Reemplaza con el nombre de tu tabla
-    
-        if ($conexion->query($sql) === TRUE) {
-            echo "Datos insertados con éxito.";
-        } else {
-            echo "Error al insertar datos: " . $conexion->error;
-        }
-    } else {
-        echo "Esta API solo admite solicitudes POST.";
-    }
-    
-    $conexion->close();
-      break;
-      case 'PATCH':
-        if ($_SERVER['REQUEST_METHOD'] === 'PATCH') {
-          parse_str(file_get_contents("php://input"), $datos);
-      
-          $id_mae = $datos['id_mae'];
-          $apodo = $datos['apodo'];
-          $foto = $datos['foto'];
-          $tel = $datos['tel'];
-      
-          if ($_SERVER['REQUEST_METHOD'] === 'PATCH') { // Método PATCH
-              $actualizaciones = array();
-              if (!empty($apodo)) {
-                  $actualizaciones[] = "apodo = '$apodo'";
-              }
-              if (!empty($foto)) {
-                  $actualizaciones[] = "foto = '$foto'";
-              }
-              if (!empty($tel)) {
-                  $actualizaciones[] = "tel = '$tel'";
-              }
-      
-              $actualizaciones_str = implode(', ', $actualizaciones);
-              $sql = "UPDATE maestro SET $actualizaciones_str WHERE id_mae = $id_mae";
-          }
-      
-          if ($conexion->query($sql) === TRUE) {
-              echo "Registro actualizado con éxito.";
-          } else {
-              echo "Error al actualizar registro: " . $conexion->error;
-          }
-      } else {
-          echo "Método de solicitud no válido.";
-      }
-      
-      $conexion->close();
-       break;
+            // Recibir los datos del formulario HTML
+            $nombre = $_POST['nombre'];
+            $apodo = $_POST['apodo'];
+            $tel = $_POST['tel'];
+            $foto = $_POST['foto'];
 
-    case 'PUT':
-      if ($_SERVER['REQUEST_METHOD'] === 'PUT' || $_SERVER['REQUEST_METHOD'] === 'PATCH') {
-        parse_str(file_get_contents("php://input"), $datos);
-    
+            // Insertar los datos en la tabla de maestro
+            $sql = $conexion->prepare("INSERT INTO maestro (nombre, apodo, tel, foto) VALUES (?,?,?,?)");
+            $sql->bind_param("ssss", $nombre, $apodo, $tel, $foto);
+            if($sql->execute()){
+                echo "Datos insertados con exito";
+            } else {
+                echo "Error al insertar datos" . $sql->error;
+            }
+        $sql->close();
+        break;
+
+        case 'PATCH':
         $id_mae = $datos['id_mae'];
+        $nombre = $datos['nombre'];
         $apodo = $datos['apodo'];
-        $foto = $datos['foto'];
         $tel = $datos['tel'];
+        $foto = $datos['foto'];
     
-        if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
-            $sql = "UPDATE maestro SET apodo = '$apodo', foto = '$foto', tel = '$tel' WHERE id_mae = $id_mae";
-        } else { // Método PATCH
-            $actualizaciones = array();
-            if (!empty($apodo)) {
-                $actualizaciones[] = "apodo = '$apodo'";
-            }
-            if (!empty($foto)) {
-                $actualizaciones[] = "foto = '$foto'";
-            }
-            if (!empty($tel)) {
-                $actualizaciones[] = "tel = '$tel'";
-            }
-    
-            $actualizaciones_str = implode(', ', $actualizaciones);
-            $sql = "UPDATE maestro SET $actualizaciones_str WHERE id_mae = $id_mae";
+        $actualizaciones = array();
+        if (!empty($nombre)) {
+            $actualizaciones[] = "nombre = '$nombre'";
         }
+        if (!empty($apodo)) {
+            $actualizaciones[] = "apodo = '$apodo'";
+        }
+        if (!empty($tel)) {
+            $actualizaciones[] = "tel = '$tel'";
+        }
+        if (!empty($foto)) {
+            $actualizaciones[] = "foto = '$foto'";
+        }
+    
+        $actualizaciones_str = implode(', ', $actualizaciones);
+        $sql = "UPDATE maestro SET $actualizaciones_str WHERE id_mae = $id_mae";
     
         if ($conexion->query($sql) === TRUE) {
             echo "Registro actualizado con éxito.";
         } else {
             echo "Error al actualizar registro: " . $conexion->error;
         }
-    } else {
-        echo "Método de solicitud no válido.";
-    }
+        break;
     
-    $conexion->close();
 
-      break;
-  
-      
-    case 'DELETE':
-      if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
-        // Procesar solicitud DELETE
-        $id_mae = $_GET['id_mae'];
-        $sql = "DELETE FROM maestro WHERE id_mae = $id_mae";
+        case 'PUT':
+            // Recibir los datos del formulario HTML
+            $id_mae = $datos['id_mae'];
+            $nombre = $datos['nombre'];
+            $apodo = $datos['apodo'];
+            $tel = $datos['tel'];
+            $foto = $datos['foto'];
+            
+            // Preparar la consulta SQL usando consultas preparadas
+            $sql = $conexion->prepare("UPDATE maestro SET nombre = ?, apodo = ?, tel = ?, foto = ? WHERE id_mae = ?");
+            $sql->bind_param("ssssi", $nombre, $apodo, $tel, $foto, $id_mae);
+            
+            // Ejecutar la consulta preparada
+            if ($sql->execute()) {
+                echo "Registro actualizado con éxito.";
+            } else {
+                echo "Error al actualizar registro: " . $conexion->error;
+            }
+            break;
+        
     
-        if ($conexion->query($sql) === TRUE) {
-            echo "Registro eliminado con éxito.";
-        } else {
-            echo "Error al eliminar registro: " . $conexion->error;
+
+            case 'DELETE':
+                // Obtener el ID de usuario del arreglo $datos
+                $id_mae = isset($_GET['id_mae']) ? $_GET['id_mae'] : null;
+
+                // Verificar si se proporcionó el ID de usuario
+                if ($id_mae === null) {
+                    echo "ID de usuario no proporcionado.";
+                    break; // Sale del switch si el ID de usuario no está presente
+                }
+
+                // Preparar la consulta de eliminación
+                $stmt = $conexion->prepare("DELETE FROM maestro WHERE id_mae = ?");
+
+                // Verificar si la preparación de la consulta fue exitosa
+                if ($stmt === false) {
+                    echo "Error en la preparación de la consulta: " . $conexion->error;
+                    break;
+                }
+
+                // Vincular el parámetro ID de usuario
+                $stmt->bind_param("i", $id_mae);
+
+                // Ejecutar la consulta de eliminación
+                if ($stmt->execute()) {
+                    echo "Registro eliminado con éxito.";
+                } else {
+                    echo "Error al eliminar registro: " . $stmt->error;
+                }
+                break;
         }
-    } else {
-        echo "Método de solicitud no válido.";
-    }
-    $conexion->close();
-      break;
 
+        header("Access-Control-Allow-Origin: *");
 
-     default:
-       echo 'undefined request type!';
-  }
+        // Permitir métodos HTTP específicos
+        header("Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE, HEAD, TRACE, PATCH");
+        
+        // Permitir encabezados personalizados
+        header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+        
+        // Permitir credenciales
+        header("Access-Control-Allow-Credentials: true");
 ?>

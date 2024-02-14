@@ -3,13 +3,12 @@
 <head>
     <title>API de Ejemplo (GET, POST, PUT, DELETE)</title>
     <script src="min.js"></script>
-
 </head>
 <body>
-<h1>Eliminar Registro por ID</h1>
+    <h1>Eliminar Entrada por ID</h1>
     
     <form id="deleteForm">
-        <label for="id_mae">ID del Registro a Eliminar:</label>
+        <label for="id_mae">ID de la Entrada a Eliminar:</label>
         <input type="text" id="id_mae" name="id_mae" required>
         <button type="button" id="deleteButton">Eliminar</button>
     </form>
@@ -35,6 +34,5 @@
             });
         });
     </script>
-    
 </body>
 </html>
