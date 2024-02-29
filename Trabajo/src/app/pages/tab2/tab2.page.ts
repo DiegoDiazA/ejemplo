@@ -12,6 +12,7 @@ export class Tab2Page {
   nombre?: string;
   apodo?: string;
   tel?: string;
+  foto?: string;
 
   constructor(private apiService: ApiService) {}
 
@@ -22,6 +23,7 @@ export class Tab2Page {
       nombre: this.nombre,
       apodo: this.apodo,
       tel: this.tel,
+      foto: this.foto,
     };
 
     this.apiService.postDatos(datos).subscribe((resp) => {

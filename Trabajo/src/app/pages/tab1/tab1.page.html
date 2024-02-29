@@ -19,13 +19,15 @@
         <ion-card>
           <ion-card-header>
             <ion-card-title>{{ item.id_mae }}</ion-card-title>
-            <ion-button (click)="item.id_mae !== undefined && eliminarDato(item.id_mae)" shape="round-10" fill="clear"> <ion-icon slot="icon-only"  name="trash-outline"></ion-icon></ion-button>
           </ion-card-header>
           <ion-card-content>
-            <p>Id usuario: {{ item.id_mae }}</p>
+            <p>ID: {{ item.id_mae }}</p>
             <p>Nombre: {{ item.nombre }}</p>
-            <p>Apodo: {{ item.apodo }}</p>            
+            <p>Apodo: {{ item.apodo }}</p>
+            <p>Tel: {{ item.tel }}</p> 
+            <p>Foto: {{ item.foto }}</p>           
           </ion-card-content>
+          <ion-button (click)="item.id_mae !== undefined && eliminarDato(item.id_mae)" shape="round-10" fill="clear"> <ion-icon slot="icon-only"  name="trash-outline"></ion-icon></ion-button>
         </ion-card>
       </ion-col>
     </ion-row>

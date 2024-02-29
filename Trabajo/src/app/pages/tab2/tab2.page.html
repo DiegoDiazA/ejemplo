@@ -5,7 +5,6 @@
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
@@ -13,16 +12,20 @@
     </ion-toolbar>
   </ion-header>
   <ion-item>
-    <ion-label position="floating">id_mae</ion-label>
-    <ion-input type="number" [(ngModel)]="id_mae"></ion-input>
-  </ion-item>
-  <ion-item>
     <ion-label position="floating">nombre</ion-label>
     <ion-input type="text" [(ngModel)]="nombre"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label position="floating">apodo</ion-label>
     <ion-input type="text" [(ngModel)]="apodo"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">tel</ion-label>
+    <ion-input type="text" [(ngModel)]="tel"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">foto</ion-label>
+    <ion-input type="text" [(ngModel)]="foto"></ion-input>
   </ion-item>
   <ion-button expand="block" (click)="enviarDatos()">Enviar</ion-button>
 </ion-content>
