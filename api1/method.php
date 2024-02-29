@@ -1,4 +1,17 @@
 <?php
+
+// Permitir el acceso desde cualquier origen
+header("Access-Control-Allow-Origin: *");
+
+// Especificar los métodos permitidos (POST, GET, etc.)
+header("Access-Control-Allow-Methods: POST, GET");
+
+// Especificar los encabezados permitidos
+header("Access-Control-Allow-Headers: Content-Type");
+
+// Permitir que las cookies se incluyan en las solicitudes (si es necesario)
+header("Access-Control-Allow-Credentials: true");
+
 require "config/Conexion.php";
 parse_str(file_get_contents("php://input"), $datos);
 //print_r($_SERVER['REQUEST_METHOD']);
@@ -24,23 +37,32 @@ switch ($_SERVER['REQUEST_METHOD']) {
         $conexion->close();
         break;
 
-    case 'POST':
-            // Recibir los datos del formulario HTML
-            $nombre = $_POST['nombre'];
-            $apodo = $_POST['apodo'];
-            $tel = $_POST['tel'];
-            $foto = $_POST['foto'];
-
-            // Insertar los datos en la tabla de maestro
-            $sql = $conexion->prepare("INSERT INTO maestro (nombre, apodo, tel, foto) VALUES (?,?,?,?)");
-            $sql->bind_param("ssss", $nombre, $apodo, $tel, $foto);
-            if($sql->execute()){
-                echo "Datos insertados con exito";
+        case 'POST':
+            // Recibir los datos en formato JSON
+            $data = json_decode(file_get_contents('php://input'), true);
+    
+            // Verificar si se han recibido los datos esperados
+            if (isset($data['nombre']) && isset($data['apodo']) && isset($data['tel']) && isset($data['foto'])) {
+                // Obtener los datos del arreglo JSON
+                $nombre = $data['nombre'];
+                $apodo = $data['apodo'];
+                $tel = $data['tel'];
+                $foto = $data['foto'];
+    
+                // Insertar los datos en la base de datos
+                $sql = $conexion->prepare("INSERT INTO maestro (nombre, apodo, tel, foto) VALUES (?, ?, ?, ?)");
+                $sql->bind_param("ssss", $nombre, $apodo, $tel, $foto);
+                if ($sql->execute()) {
+                    echo "Datos insertados con éxito";
+                } else {
+                    echo "Error al insertar datos: " . $sql->error;
+                }
+                $sql->close();
             } else {
-                echo "Error al insertar datos" . $sql->error;
+                // Si faltan datos
+                echo "Error: Faltan datos en la solicitud.";
             }
-        $sql->close();
-        break;
+            break;
 
         case 'PATCH':
         $id_mae = $datos['id_mae'];

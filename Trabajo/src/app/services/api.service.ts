@@ -17,8 +17,8 @@ export class ApiService {
       .pipe(map((resp) => resp));
   }
 
-  // Método para enviar datos por POST
-  postDatos(datos: any): Observable<any> {
+   // Método para enviar datos por POST
+   postDatos(datos: TopLevel): Observable<any> {
     return this.http.post<any>(this.apiUrl, datos, {
       responseType: 'text' as 'json',
     });
