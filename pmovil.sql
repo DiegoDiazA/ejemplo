@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-01-2024 a las 20:34:53
+-- Tiempo de generación: 05-03-2024 a las 05:28:18
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -40,8 +40,9 @@ CREATE TABLE `maestro` (
 --
 
 INSERT INTO `maestro` (`id_mae`, `nombre`, `apodo`, `tel`, `foto`) VALUES
-(3, 'diego', 'deigo', '1234', 'a'),
-(4, 'a', 'a', '123456', 'l');
+(5, 'abdf', 'frsg', '12315464', 'lllll'),
+(6, 'aaaaa', 'bbbbbb', '121212', 'q'),
+(11, 'ultimaprueba', 'otravez', '90909', 'lol');
 
 --
 -- Índices para tablas volcadas
@@ -61,7 +62,7 @@ ALTER TABLE `maestro`
 -- AUTO_INCREMENT de la tabla `maestro`
 --
 ALTER TABLE `maestro`
-  MODIFY `id_mae` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_mae` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
