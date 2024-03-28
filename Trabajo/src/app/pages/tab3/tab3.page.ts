@@ -19,16 +19,6 @@ export class Tab3Page {
   }
 
   login() {
-    this.authService.login({ username: this.username, password: this.password })
-      .subscribe(
-        () => {
-          // Redirige a la página principal después de iniciar sesión exitosamente
-          this.router.navigate(['/home']); // Ajusta la ruta según sea necesario
-        },
-        (error: any) => {
-          // Maneja errores de inicio de sesión
-          console.error(error);
-        }
-      );
+    this.router.navigate(['']);
   }
 }

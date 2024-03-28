@@ -5,3 +5,10 @@ export interface TopLevel {
   tel?:    string;
   foto?:   string;
 }
+
+export interface User {
+  id: string;
+  usuario:    string;
+  correo:     string;
+  contrasena: string;
+}

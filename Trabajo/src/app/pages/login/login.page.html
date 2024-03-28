@@ -1,0 +1,24 @@
+<ion-content>
+  <div class="login-container">
+    <ion-row class="header">
+      <ion-title size="large">Iniciar sesión</ion-title>
+    </ion-row>
+    <ion-row class="form" justify-content-center (ngSubmit)="login()">
+      <ion-grid class="login">
+        <ion-item class="input-item">
+          <ion-input type="email" placeholder="Email" name="user" [(ngModel)]='email'></ion-input>
+        </ion-item>
+        <ion-item class="input-item">
+          <ion-input type="password" placeholder="Contraseña" name="password" [(ngModel)]='password'></ion-input>
+        </ion-item>
+        <ion-button expand="block" class="login-button" (click)="login()">Entrar</ion-button>
+      </ion-grid>
+    </ion-row>
+    <ion-row class="register-link" justify-content-center>
+      <ion-col size="auto">
+        <ion-text color="medium">¿No tienes cuenta?</ion-text>
+        <ion-button fill="clear" routerLink="/registro">Registrarse</ion-button>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>

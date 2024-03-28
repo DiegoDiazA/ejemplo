@@ -1,51 +1,27 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Registro</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
+<ion-content>
+  <div class="register-container">
+    <ion-row class="header">
       <ion-title size="large">Registro</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-button (click)="prevpage()"><ion-icon name="chevron-back-outline"></ion-icon>Volver</ion-button>
-  
-  <ion-card color="dark">
-    <ion-card-header>
-      <ion-card-title>El registro no está disponible</ion-card-title>
-      <ion-card-subtitle>Bueno, no está hecho xd</ion-card-subtitle>
-    </ion-card-header>
-  
-    <ion-card-content>  </ion-card-content>
-  </ion-card>
-  <ion-content color="light">
-    <ion-list [inset]="true">
-      <ion-item>
-        <ion-input label="First Name"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input label="Last Name"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-toggle>
-          <ion-label>Allow Notifications</ion-label>
-          <ion-note color="medium">Unsubscribe at any time</ion-note>
-        </ion-toggle>
-      </ion-item>
-    </ion-list>
-  
-    <ion-list [inset]="true">
-      <ion-item>
-        <ion-textarea label="Comments" labelPlacement="floating" rows="5"></ion-textarea>
-      </ion-item>
-    </ion-list>
-  
-    <ion-note color="medium" class="ion-margin-horizontal">
-      Your comments will be kept anonymous and will only be used to improve the reliability of our products.</ion-note
-    >
-  </ion-content>
-  <ion-datetime style="display: block; margin: 0 auto;"></ion-datetime>
-  
+    </ion-row>
+    <ion-row class="form" justify-content-center (ngSubmit)="signup()">
+      <ion-grid class="register">
+        <ion-item class="input-item">
+          <ion-input type="text" placeholder="Nombre" [(ngModel)]='name' id="name" name="name" required></ion-input>
+        </ion-item>
+        <ion-item class="input-item">
+          <ion-input type="email" placeholder="Email" name="user" [(ngModel)]='email'></ion-input>
+        </ion-item>
+        <ion-item class="input-item">
+          <ion-input type="password" placeholder="Contraseña" name="password" [(ngModel)]='password'></ion-input>
+        </ion-item>
+        <ion-button expand="block" class="signup-button" (click)="signup()">Registrarse</ion-button>
+      </ion-grid>
+    </ion-row>
+    <ion-row class="login-link" justify-content-center>
+      <ion-col size="auto">
+        <ion-text color="medium">¿Ya tienes cuenta?</ion-text>
+        <ion-button fill="clear" routerLink=''>Inicia sesión</ion-button>
+      </ion-col>
+    </ion-row>
+  </div>
 </ion-content>
