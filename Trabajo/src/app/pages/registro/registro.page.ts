@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
-import { User } from './../interfaces/index';
+import { User } from '../../interfaces/index';
 import { ApiService } from 'src/app/services/api.service';
 import { UserDataService } from 'src/app/services/user-data.service';
 import { Router } from '@angular/router';
@@ -36,14 +36,14 @@ export class RegistroPage implements OnInit {
 
       // Guardar datos del usuario en tu base de datos
       const user: User = {
-        id: userCredential.user.uid,
+        id_user: userCredential.user.uid,
         usuario: this.name,
         correo: this.email,
         contrasena: this.password
       };
 
       // Con esto guardo al usuario
-      this.userDataService.setUserData(user.correo, user.id);
+      this.userDataService.setUserData(user.correo, user.id_user);
 
       // Aqui nomas imprimo los datos y el token
       this.userDataService.printUserData();
@@ -53,7 +53,7 @@ export class RegistroPage implements OnInit {
         console.log('Usuario guardado en la base de datos:', response);
       });
 
-      this.router.navigate(['/tabs']);
+      this.router.navigate(['tab/tabs/tab1']);
 
       return userCredential;
     } catch (error) {

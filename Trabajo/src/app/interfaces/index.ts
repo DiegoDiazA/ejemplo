@@ -7,7 +7,7 @@ export interface TopLevel {
 }
 
 export interface User {
-  id: string;
+  id_user: string;
   usuario:    string;
   correo:     string;
   contrasena: string;
