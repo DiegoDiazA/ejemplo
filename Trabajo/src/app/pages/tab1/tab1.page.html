@@ -1,33 +1,31 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Usuarios
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Prueba users</ion-title>
+      <ion-title size="large">Lista de Pokémon</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <ion-grid>
     <ion-row>
-      <ion-col *ngFor="let item of resp">
+      <ion-col size="12" size-md="6" size-lg="4" *ngFor="let pokemon of pokemones">
         <ion-card>
           <ion-card-header>
-            <ion-card-title>{{ item.id_mae }}</ion-card-title>
+            <ion-card-title>{{ pokemon.nombre_pkmn }}</ion-card-title>
           </ion-card-header>
           <ion-card-content>
-            <p>ID: {{ item.id_mae }}</p>
-            <p>Nombre: {{ item.nombre }}</p>
-            <p>Apodo: {{ item.apodo }}</p>
-            <p>Tel: {{ item.tel }}</p> 
-            <p>Foto: {{ item.foto }}</p>           
+            <p>ID: {{ pokemon.id_pkmn }}</p>
+            <p>Nombre: {{ pokemon.nombre_pkmn }}</p>
+            <p>Tipo 1: {{ pokemon.tipo1 }}</p>
+            <p>Tipo 2: {{ pokemon.tipo2 }}</p>
           </ion-card-content>
-          <ion-button (click)="item.id_mae !== undefined && eliminarDato(item.id_mae)" shape="round-10" fill="clear"> <ion-icon slot="icon-only"  name="trash-outline"></ion-icon></ion-button>
+          <ion-button
+            (click)="eliminarPokemon(pokemon.id_pkmn)"
+            shape="round-10"
+            fill="clear"
+            color="danger"
+          >
+            <ion-icon name="trash-outline"></ion-icon>
+          </ion-button>
         </ion-card>
       </ion-col>
     </ion-row>

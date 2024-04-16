@@ -12,3 +12,10 @@ export interface User {
   correo:     string;
   contrasena: string;
 }
+
+export interface Pokemon {
+  id_pkmn: number;
+  nombre_pkmn: string;
+  tipo1: string;
+  tipo2: string;
+}

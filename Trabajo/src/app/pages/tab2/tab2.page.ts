@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
-import { HttpHeaders } from '@angular/common/http';
-import { TopLevel } from 'src/app/interfaces';
+import { Pokemon } from 'src/app/interfaces';
 
 @Component({
   selector: 'app-tab2',
@@ -9,34 +8,26 @@ import { TopLevel } from 'src/app/interfaces';
   styleUrls: ['tab2.page.scss'],
 })
 export class Tab2Page {
-  nombre?: string;
-  apodo?: string;
-  tel?: string;
-  foto?: string;
+  // Propiedades para almacenar los datos del nuevo Pokémon
+  public nuevoPokemon: Pokemon = {
+    id_pkmn: 0, // Inicializamos id_pkmn con un valor predeterminado
+    nombre_pkmn: '',
+    tipo1: '',
+    tipo2: ''
+  };
 
   constructor(private apiService: ApiService) {}
 
-  enviarDatos() {
-    const datos: TopLevel = {
-      nombre: this.nombre,
-      apodo: this.apodo,
-      tel: this.tel,
-      foto: this.foto,
-    };
-
-    // Configura los encabezados para indicar que se está enviando JSON
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-
-    // Llama al método postDatos() del servicio ApiService para enviar los datos al servidor
-    this.apiService.postDatos(datos).subscribe(
+  // Método para enviar los datos del nuevo Pokémon al servidor
+  agregarPokemon() {
+    // Llama al método crearPokemon() del servicio ApiService para agregar un nuevo Pokémon
+    this.apiService.crearPokemon(this.nuevoPokemon).subscribe(
       (resp) => {
         console.log(resp);
         // Aquí puedes manejar la respuesta del servidor como desees
       },
       (error) => {
-        console.error('Error al enviar los datos:', error);
+        console.error('Error al agregar el nuevo Pokémon:', error);
         // Aquí puedes manejar el error de manera más específica
       }
     );

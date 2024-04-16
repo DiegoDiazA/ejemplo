@@ -1,0 +1,39 @@
+/* Definición de colores personalizados */
+$color-pokemon-rojo: #ff1a1a;
+$color-pokemon-blanco: #ffffff;
+
+/* Estilos para la página Tab 1 */
+
+.page-content {
+  background-image: url('/assets/background.png'); /* Cambia 'background.png' por la ruta de tu imagen de fondo */
+  background-size: cover;
+}
+
+ion-card {
+  margin-bottom: 20px;
+  border-radius: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: $color-pokemon-blanco; /* Fondo blanco para las tarjetas */
+}
+
+ion-card-header {
+  background-color: $color-pokemon-rojo; /* Fondo rojo para los encabezados de las tarjetas */
+  border-radius: 15px 15px 0 0;
+}
+
+ion-card-title {
+  font-weight: bold;
+  color: $color-pokemon-blanco; /* Texto blanco para los títulos de las tarjetas */
+}
+
+ion-card-content {
+  padding: 15px;
+}
+
+ion-grid {
+  padding: 15px;
+}
+
+ion-row {
+  justify-content: center;
+}
