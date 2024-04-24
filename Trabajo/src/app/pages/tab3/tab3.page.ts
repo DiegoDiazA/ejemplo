@@ -14,10 +14,6 @@ export class Tab3Page {
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  nextpage() {
-    this.router.navigate(['/registro']);
-  }
-
   login() {
     this.router.navigate(['']);
   }

@@ -6,24 +6,62 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="ion-padding">
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Agregar Pokémon</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <ion-item>
-    <ion-label position="floating">Nombre del Pokémon</ion-label>
-    <ion-input type="text" [(ngModel)]="nuevoPokemon.nombre_pkmn"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="floating">Tipo 1</ion-label>
-    <ion-input type="text" [(ngModel)]="nuevoPokemon.tipo1"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="floating">Tipo 2</ion-label>
-    <ion-input type="text" [(ngModel)]="nuevoPokemon.tipo2"></ion-input>
-  </ion-item>
-  <ion-button expand="block" (click)="agregarPokemon()">Agregar Pokémon</ion-button>
+  <ion-list style="margin-bottom: 20px; border-radius: 10px; overflow: hidden;">
+    <ion-item lines="full" class="ion-margin-bottom">
+      <ion-label position="floating">Nombre del Pokémon</ion-label>
+      <ion-input type="text" [(ngModel)]="nuevoPokemon.nombre_pkmn"></ion-input>
+    </ion-item>
+
+    <ion-item lines="full" class="ion-margin-bottom">
+      <ion-label position="floating">Tipo 1</ion-label>
+      <ion-input type="text" [(ngModel)]="nuevoPokemon.tipo1"></ion-input>
+    </ion-item>
+
+    <ion-item lines="full" class="ion-margin-bottom">
+      <ion-label position="floating">Tipo 2</ion-label>
+      <ion-input type="text" [(ngModel)]="nuevoPokemon.tipo2"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-list style="margin-bottom: 20px; border-radius: 10px; overflow: hidden;">
+    <ion-item-divider class="red-divider" style="margin-top: 0; margin-bottom: 0;">Movimientos</ion-item-divider>
+
+    <ion-item lines="full" class="ion-margin-bottom">
+      <ion-label position="floating">Movimiento 1</ion-label>
+      <ion-input type="text" [(ngModel)]="nuevoPokemon.mov1"></ion-input>
+    </ion-item>
+
+    <ion-item lines="full" class="ion-margin-bottom">
+      <ion-label position="floating">Movimiento 2</ion-label>
+      <ion-input type="text" [(ngModel)]="nuevoPokemon.mov2"></ion-input>
+    </ion-item>
+
+    <ion-item lines="full" class="ion-margin-bottom">
+      <ion-label position="floating">Movimiento 3</ion-label>
+      <ion-input type="text" [(ngModel)]="nuevoPokemon.mov3"></ion-input>
+    </ion-item>
+
+    <ion-item lines="full" class="ion-margin-bottom">
+      <ion-label position="floating">Movimiento 4</ion-label>
+      <ion-input type="text" [(ngModel)]="nuevoPokemon.mov4"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-list style="margin-bottom: 20px; border-radius: 10px; overflow: hidden;">
+    <ion-item-divider class="red-divider" style="margin-top: 0; margin-bottom: 0;">Otros detalles</ion-item-divider>
+
+    <ion-item lines="full" class="ion-margin-bottom">
+      <ion-label position="floating">Ruta de captura</ion-label>
+      <ion-input type="text" [(ngModel)]="nuevoPokemon.ruta"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-button size="small" expand="block" style="width: 150px; margin: 20px auto;" color="danger" (click)="agregarPokemon()">Agregar Pokémon</ion-button>
 </ion-content>

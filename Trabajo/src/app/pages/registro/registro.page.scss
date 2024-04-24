@@ -1,34 +1,40 @@
 .register-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-  }
-  
-  .header {
-    margin-bottom: 20px;
-  }
-  
-  .form {
-    width: 80%;
-    max-width: 400px;
-  }
-  
-  .input-item {
-    --border-radius: 15px;
-    --padding-start: 15px;
-    --padding-end: 15px;
-    --padding-top: 10px;
-    --padding-bottom: 10px;
-    margin-bottom: 15px;
-  }
-  
-  .signup-button {
-    margin-top: 20px;
-  }
-  
-  .login-link {
-    margin-top: 20px;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.header {
+  margin-bottom: 20px;
+}
+
+.form {
+  width: 80%;
+  max-width: 400px;
+}
+
+.input-item {
+  --border-radius: 15px;
+  --padding-start: 15px;
+  --padding-end: 15px;
+  --padding-top: 10px;
+  --padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+.signup-button {
+  --background: #902222; /* Color rojo oscuro */
+  --color: #ffffff; /* Texto blanco */
+  margin-top: 20px;
+}
+
+.login-link {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.login-link ion-button {
+  --color: #ffd700; /* Color amarillo */
+}

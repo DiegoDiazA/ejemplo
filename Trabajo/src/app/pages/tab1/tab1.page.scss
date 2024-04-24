@@ -1,6 +1,6 @@
 /* Definición de colores personalizados */
-$color-pokemon-rojo: #ff1a1a;
-$color-pokemon-blanco: #ffffff;
+$color-pokemon-rojo: #ba2525;
+$color-pokemon-blanco: #dbdbdb;
 
 /* Estilos para la página Tab 1 */
 
@@ -16,9 +16,15 @@ ion-card {
   background-color: $color-pokemon-blanco; /* Fondo blanco para las tarjetas */
 }
 
+ion-card-content {
+  color: black; /* Cambia el color del texto a negro */
+}
+
+
 ion-card-header {
   background-color: $color-pokemon-rojo; /* Fondo rojo para los encabezados de las tarjetas */
   border-radius: 15px 15px 0 0;
+  text-align: center; /* Centra el texto dentro del encabezado de la tarjeta */
 }
 
 ion-card-title {
@@ -36,4 +42,29 @@ ion-grid {
 
 ion-row {
   justify-content: center;
+}
+
+ion-card-content table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 0px solid #dbdbdb;
+}
+
+ion-card-content th,
+ion-card-content td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #dbdbdb;
+}
+
+ion-card-content th {
+  background-color: #dbdbdb;
+}
+
+ion-card-content tr:nth-child(even) {
+  background-color: #eb8c8ca2; /* Color de fondo para filas pares */
+}
+
+ion-card-content tr:nth-child(odd) {
+  background-color: #dbdbdb; /* Color de fondo para filas impares */
 }

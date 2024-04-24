@@ -1,14 +1,13 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Inicio de sesión
+      Cierre de sesión
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
-  <ion-button expand="block" (click)="login()">Iniciar sesión</ion-button>
-  <ion-button expand="block" (click)="nextpage()">Registro</ion-button>
-
+<ion-content class="ion-padding">
+  <div class="logout-container">
+    <ion-button expand="block" color="danger" class="logout-button" (click)="login()">Cerrar Sesión</ion-button>
+  </div>
 </ion-content>

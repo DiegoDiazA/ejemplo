@@ -18,4 +18,9 @@ export interface Pokemon {
   nombre_pkmn: string;
   tipo1: string;
   tipo2: string;
+  mov1: string;
+  mov2: string;
+  mov3: string;
+  mov4: string;
+  ruta: string;
 }

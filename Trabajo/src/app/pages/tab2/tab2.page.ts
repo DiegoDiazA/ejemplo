@@ -13,7 +13,12 @@ export class Tab2Page {
     id_pkmn: 0, // Inicializamos id_pkmn con un valor predeterminado
     nombre_pkmn: '',
     tipo1: '',
-    tipo2: ''
+    tipo2: '',
+    mov1: '',
+    mov2: '',
+    mov3: '',
+    mov4: '',
+    ruta: ''
   };
 
   constructor(private apiService: ApiService) {}

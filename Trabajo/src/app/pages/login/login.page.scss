@@ -62,9 +62,12 @@
 }
 
 .login-button {
+  --background: #902222; /* Cambiamos el color de fondo del botón de login a un gris más claro */
+  --color: #ffffff; /* Cambiamos el color del texto a blanco */
   margin-top: 20px;
 }
 
-.register-link {
-  margin-top: 20px;
+
+.register-link ion-button {
+  --color: #ffd700; /* Cambiamos el color azul por un gris más claro */
 }

@@ -1,0 +1,13 @@
+.logout-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  .logout-button {
+    --background: #ff5a5f; /* Cambia el color de fondo del botón a rojo */
+    --border-radius: 10px; /* Hace que los bordes del botón sean redondeados */
+    --box-shadow: none; /* Elimina la sombra del botón */
+  }
+  

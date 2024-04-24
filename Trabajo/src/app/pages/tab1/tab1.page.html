@@ -13,10 +13,36 @@
             <ion-card-title>{{ pokemon.nombre_pkmn }}</ion-card-title>
           </ion-card-header>
           <ion-card-content>
-            <p>ID: {{ pokemon.id_pkmn }}</p>
-            <p>Nombre: {{ pokemon.nombre_pkmn }}</p>
-            <p>Tipo 1: {{ pokemon.tipo1 }}</p>
-            <p>Tipo 2: {{ pokemon.tipo2 }}</p>
+            <table>
+              <tr>
+                <td>Tipo 1:</td>
+                <td>{{ pokemon.tipo1 }}</td>
+              </tr>
+              <tr>
+                <td>Tipo 2:</td>
+                <td>{{ pokemon.tipo2 }}</td>
+              </tr>
+              <tr>
+                <td>Movimiento 1:</td>
+                <td>{{ pokemon.mov1 }}</td>
+              </tr>
+              <tr>
+                <td>Movimiento 2:</td>
+                <td>{{ pokemon.mov2 }}</td>
+              </tr>
+              <tr>
+                <td>Movimiento 3:</td>
+                <td>{{ pokemon.mov3 }}</td>
+              </tr>
+              <tr>
+                <td>Movimiento 4:</td>
+                <td>{{ pokemon.mov4 }}</td>
+              </tr>
+              <tr>
+                <td>Ruta de captura:</td>
+                <td>{{ pokemon.ruta }}</td>
+              </tr>
+            </table>
           </ion-card-content>
           <ion-button
             (click)="eliminarPokemon(pokemon.id_pkmn)"
